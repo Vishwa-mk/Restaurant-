@@ -1,0 +1,118 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  header {
+    background-color: #ff6347;
+    color: white;
+    text-align: center;
+    padding: 1em;
+  }
+  
+  main {
+    padding: 1em;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  h1, h2 {
+    margin-bottom: 0.5em;
+  }
+  footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    /*position: fixed;*/
+    width: 100%;
+    bottom: 0;
+
+  }
+  
+  /* Menu Section */
+  #menu {
+    margin-bottom: 2em;
+  }
+  
+  #menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  
+  .menu-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    text-align: center;
+    width: calc(33% - 1em);
+  }
+  
+  .menu-item h3 {
+    margin-bottom: 0.5em;
+  }
+  
+  .menu-item button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .menu-item button:hover {
+    background-color: #e55337;
+  }
+  
+  /* Cart Section */
+  #cart {
+    margin-bottom: 2em;
+  }
+  
+  #cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1em 0;
+  }
+  
+  #cart-items li {
+    padding: 0.5em;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #place-order {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.7em 1em;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  #place-order:hover {
+    background-color: #218838;
+  }
+  
+  /* Orders Section */
+  #orders {
+    margin-bottom: 2em;
+  }
+  
+  #order-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #order-list li {
+    padding: 0.5em;
+    border-bottom: 1px solid #ddd;
+  }
+
+  
