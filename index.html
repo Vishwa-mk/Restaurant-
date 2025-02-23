@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Ordering System</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: linear-gradient(90deg, #ff6347, #ff4500);
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .menu-item {
+      display: inline-block;
+      width: 30%;
+      padding: 15px;
+      margin: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .menu-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #218838;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 10px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <header>Restaurant Ordering System</header>
+  <main>
+    <section class="section" id="menu">
+      <h2>Menu</h2>
+      <div id="menu-items"></div>
+    </section>
+
+    <section class="section" id="orders">
+      <h2>Your Orders</h2>
+      <p>Total Amount: Rs. <span id="total-amount">0</span></p>
+      <button id="place-order">Place Order</button>
+      <ul id="order-list"></ul>
+    </section>
+  </main>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuItems = [
+        { id: 1, name: "Pizza", price: 12, image: "a.jpeg" },
+        { id: 2, name: "Burger", price: 8, image: "b.jpg" },
+        { id: 3, name: "Pasta", price: 10, image: "c.jpg" }
+      ];
+      const orders = [];
+      let totalAmount = 0;
+      
+      const menuContainer = document.getElementById("menu-items");
+      menuItems.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "menu-item";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>Rs. ${item.price}</p>
+          <button onclick="addToOrder(${item.id})">Add</button>
+        `;
+        menuContainer.appendChild(div);
+      });
+
+      window.addToOrder = (id) => {
+        const item = menuItems.find((menuItem) => menuItem.id === id);
+        totalAmount += item.price;
+        document.getElementById("total-amount").textContent = totalAmount;
+      };
+
+      document.getElementById("place-order").addEventListener("click", () => {
+        if (totalAmount === 0) {
+          alert("No items selected!");
+          return;
+        }
+        orders.push({ id: orders.length + 1, amount: totalAmount, status: "Pending" });
+        totalAmount = 0;
+        document.getElementById("total-amount").textContent = totalAmount;
+        renderOrders();
+        alert("Order placed successfully!");
+        window.location.href = "payment.html";
+      });
+
+      const renderOrders = () => {
+        const orderList = document.getElementById("order-list");
+        orderList.innerHTML = "";
+        orders.forEach((order) => {
+          const li = document.createElement("li");
+          li.innerHTML = `Order #${order.id} - Amount: Rs. ${order.amount} - Status: ${order.status}`;
+          orderList.appendChild(li);
+        });
+      };
+    });
+  </script>
+  
+  <footer>
+    <p>Contact us: +91 9629398432 | Email: restaurant@hotel-booking.com</p>
+    <p>Feedback: Available on <strong>Go-Search PlayShop</strong></p>
+    <p>&copy; 2024 Residential Hotel - All Rights Reserved</p>
+  </footer>
+</body>
+</html>
